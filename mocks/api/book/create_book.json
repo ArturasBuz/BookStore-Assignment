@@ -1,0 +1,25 @@
+{
+  "request": {
+    "url": "/v1/books",
+    "method": "POST"
+  },
+  "name": "Create book",
+  "isArray": false,
+  "responses": {
+    "successful": {
+      "default": true,
+      "status": 201,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "file": "../../api-data/book/books_create_201_data.json"
+    },
+    "404-failure": {
+      "status": 404,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "file": "../../api-data/book/books_update_404_data.json"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "request": {
+    "url": "/v1/books/.*",
+    "method": "PUT"
+  },
+  "name": "Update book by id",
+  "isArray": false,
+  "responses": {
+    "successful": {
+      "default": true,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "file": "../../api-data/book/books_update_200_data.json"
+    },
+    "404-failure": {
+      "status": 404,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "file": "../../api-data/book/books_update_404_data.json"
+    }
+  }
+}

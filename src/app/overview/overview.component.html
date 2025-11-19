@@ -1,0 +1,62 @@
+<!-- Header -->
+<header>
+  <h1>{{ 'main.title' | translate }}</h1>
+
+  <div>
+    <mat-slide-toggle [(ngModel)]="showOnlyOnSale" (change)="onSaleToggleChange()">
+      {{ 'main.showOffer' | translate }}
+    </mat-slide-toggle>
+
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>{{ 'form.searchBook' | translate }}</mat-label>
+      <input data-test-id="input-search-book" matInput (keyup)="applySearchFilter($event)" />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <button data-test-id="button-create-book" mat-raised-button extended color="primary" (click)="openCreateDialog()">
+      {{ 'buttons.createBook' | translate }}
+    </button>
+  </div>
+</header>
+
+<!-- Table -->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z3">
+  <!-- Title -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>{{ 'book.title' | translate }}</th>
+    <td mat-cell *matCellDef="let book" (click)="openDetailsDialog(book)">{{ book.title }}</td>
+  </ng-container>
+
+  <!-- Price -->
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>{{ 'book.price' | translate }}</th>
+    <td mat-cell *matCellDef="let book" (click)="openDetailsDialog(book)">{{ book.price | currency: 'DKK' }}</td>
+  </ng-container>
+
+  <!-- Sale status -->
+  <ng-container matColumnDef="saleStatus">
+    <th mat-header-cell *matHeaderCellDef>{{ 'book.onOffer' | translate }}</th>
+    <td mat-cell *matCellDef="let book" (click)="openDetailsDialog(book)">
+      {{ book.onSale ? ('main.yes' | translate) : ('main.no' | translate) }}
+    </td>
+  </ng-container>
+
+  <!-- Actions -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let book">
+      <button mat-icon-button color="primary" (click)="openEditDialog(book)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="openDeleteDialog(book)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<!-- Pagination -->
+<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>

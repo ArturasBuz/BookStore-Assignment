@@ -1,0 +1,87 @@
+{
+  "main": {
+    "title": "Book Store",
+    "showOffer": "Show offers",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "buttons": {
+    "createBook": "Create book",
+    "close": "Close",
+    "undo": "Undo",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit"
+  },
+  "form": {
+    "searchBook": "Search for a book",
+    "title": "Title",
+    "price": "Price",
+    "pageCount": "Page count",
+    "onSale": "On sale",
+    "onOffer": "On offer"
+  },
+  "book": {
+    "title": "Title",
+    "author": "Author",
+    "price": "Price",
+    "onOffer": "On offer",
+    "saleStatus": "Sale status",
+    "pageCount": "Page count",
+    "lastUpdated": "Last updated",
+    "lastUpdatedBy": "Updated by"
+  },
+  "dialogs": {
+    "create": {
+      "title": "Create new book"
+    },
+    "edit": {
+      "title": "Edit book"
+    },
+    "delete": {
+      "title": "Confirm deletion",
+      "message": "Are you sure you want to delete \"{{ title }}\"?"
+    },
+    "details": {
+      "title": "Book details"
+    }
+  },
+  "status": {
+    "yes": "Yes",
+    "no": "No"
+  },
+  "messages": {
+    "bookCreated": "Book \"{{title}}\" created successfully!",
+    "bookUpdated": "Book \"{{title}}\" updated successfully!",
+    "bookDeleted": "Book \"{{title}}\" deleted successfully!"
+  },
+  "errors": {
+    "createFailed": "Could not create book \"{{title}}\"!",
+    "updateFailed": "Could not update book \"{{title}}\"!",
+    "deleteFailed": "Could not delete book \"{{title}}\"!",
+    "formValidation": "Please fill out all required fields correctly",
+    "bookUpdateFailed": "Book could not be edited.",
+    "bookDeleteFailed": "Book could not be deleted."
+  },
+  "validation": {
+    "required": "This field is required",
+    "minValue": "Price must be at least 0.01",
+    "minPages": "Must have at least 1 page"
+  },
+  "table": {
+    "title": "Title",
+    "price": "Price",
+    "saleStatus": "Sale status",
+    "actions": "Actions"
+  },
+  "paginator": {
+    "itemsPerPage": "Items per page:",
+    "nextPage": "Next page",
+    "previousPage": "Previous page",
+    "firstPage": "First page",
+    "lastPage": "Last page",
+    "rangeEmpty": "0 of {{total}}",
+    "range": "{{start}} - {{end}} of {{total}}"
+  }
+}

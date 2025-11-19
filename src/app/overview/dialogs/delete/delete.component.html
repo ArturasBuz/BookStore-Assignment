@@ -1,0 +1,16 @@
+<!-- Header -->
+<div class="dialog-header">
+  <h2>{{ 'dialogs.delete.title' | translate }}</h2>
+  <button mat-icon-button mat-dialog-close aria-label="Close"><mat-icon>close</mat-icon></button>
+</div>
+
+<!-- Content -->
+<mat-dialog-content>
+  <p>{{ 'dialogs.delete.message' | translate: { title: data.title } }}</p>
+</mat-dialog-content>
+
+<!-- Actions -->
+<mat-dialog-actions>
+  <button mat-stroked-button (click)="onCancel()">{{ 'buttons.cancel' | translate }}</button>
+  <button mat-flat-button color="warn" (click)="onConfirm()">{{ 'buttons.delete' | translate }}</button>
+</mat-dialog-actions>

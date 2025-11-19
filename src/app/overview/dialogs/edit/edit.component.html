@@ -1,0 +1,48 @@
+<!-- Header -->
+<div class="dialog-header">
+  <h2>{{ 'dialogs.edit.title' | translate }}</h2>
+  <button mat-icon-button mat-dialog-close aria-label="Close"><mat-icon>close</mat-icon></button>
+</div>
+
+<!-- Content -->
+<mat-dialog-content>
+  <form [formGroup]="editForm">
+    <!-- Title -->
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'form.title' | translate }}</mat-label>
+      <input matInput formControlName="title" required />
+      <mat-error *ngIf="editForm.get('title')?.hasError('required')">{{ 'validation.required' | translate }}</mat-error>
+    </mat-form-field>
+
+    <!-- Price -->
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'form.price' | translate }}</mat-label>
+      <input matInput type="number" formControlName="price" required />
+      <mat-error *ngIf="editForm.get('price')?.hasError('required')"
+        >{{ 'validation.required' | translate }}
+      </mat-error>
+      <mat-error *ngIf="editForm.get('price')?.hasError('min')">{{ 'validation.minValue' | translate }}</mat-error>
+    </mat-form-field>
+
+    <!-- Page Count -->
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'form.pageCount' | translate }}</mat-label>
+      <input matInput type="number" formControlName="pageCount" required />
+      <mat-error *ngIf="editForm.get('pageCount')?.hasError('required')">{{
+        'validation.required' | translate
+      }}</mat-error>
+      <mat-error *ngIf="editForm.get('pageCount')?.hasError('min')">{{ 'validation.minPages' | translate }}</mat-error>
+    </mat-form-field>
+
+    <!-- On Sale -->
+    <mat-checkbox formControlName="onSale">{{ 'form.onSale' | translate }}</mat-checkbox>
+  </form>
+</mat-dialog-content>
+
+<!-- Actions -->
+<mat-dialog-actions>
+  <button mat-stroked-button (click)="onCancel()">{{ 'buttons.cancel' | translate }}</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="isSaveDisabled()">
+    {{ 'buttons.save' | translate }}
+  </button>
+</mat-dialog-actions>

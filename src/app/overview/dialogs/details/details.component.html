@@ -1,0 +1,36 @@
+<!-- Header -->
+<div class="dialog-header">
+  <h2>{{ data.title }}</h2>
+  <button mat-icon-button mat-dialog-close aria-label="Close"><mat-icon>close</mat-icon></button>
+</div>
+
+<!-- Content -->
+<mat-dialog-content>
+  <ul>
+    <li>
+      {{ 'book.price' | translate }}:<strong>{{ data.price | currency: 'DKK' }}</strong>
+    </li>
+    <li>
+      {{ 'book.author' | translate }}:<strong>{{ data.author }}</strong>
+    </li>
+    <li>
+      {{ 'book.saleStatus' | translate }}:<strong>{{
+        data.onSale ? ('status.yes' | translate) : ('status.no' | translate)
+      }}</strong>
+    </li>
+    <li>
+      {{ 'book.pageCount' | translate }}:<strong>{{ data.pageCount }}</strong>
+    </li>
+    <li>
+      {{ 'book.lastUpdated' | translate }}:<strong>{{ data.lastUpdated | date: 'dd/MM/yyyy' }}</strong>
+    </li>
+    <li>
+      {{ 'book.lastUpdatedBy' | translate }}:<strong>{{ data.lastUpdatedBy }}</strong>
+    </li>
+  </ul>
+</mat-dialog-content>
+
+<!-- Actions -->
+<mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>{{ 'buttons.close' | translate }}</button>
+</mat-dialog-actions>

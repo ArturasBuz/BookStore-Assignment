@@ -1,0 +1,21 @@
+{
+  "request": {
+    "url": "/v1/books/.*",
+    "method": "DELETE"
+  },
+  "name": "Delete book by id",
+  "isArray": false,
+  "responses": {
+    "successful": {
+      "default": true,
+      "status": 204
+    },
+    "404-failure": {
+      "status": 404,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "file": "../../api-data/book/books_delete_404_data.json"
+    }
+  }
+}

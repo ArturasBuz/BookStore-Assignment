@@ -1,0 +1,87 @@
+{
+  "main": {
+    "title": "Boghandel",
+    "showOffer": "Se tilbud",
+    "yes": "Ja",
+    "no": "Nej"
+  },
+  "buttons": {
+    "createBook": "Opret bog",
+    "close": "Luk",
+    "undo": "Fortryd",
+    "delete": "Slet",
+    "save": "Gem",
+    "cancel": "Annuller",
+    "edit": "Rediger"
+  },
+  "form": {
+    "searchBook": "Søg efter en bog",
+    "title": "Titel",
+    "price": "Pris",
+    "pageCount": "Sideantal",
+    "onSale": "På tilbud",
+    "onOffer": "På tilbud"
+  },
+  "book": {
+    "title": "Titel",
+    "author": "Forfatter",
+    "price": "Pris",
+    "onOffer": "På tilbud",
+    "saleStatus": "Tilbudsstatus",
+    "pageCount": "Sideantal",
+    "lastUpdated": "Sidst opdateret",
+    "lastUpdatedBy": "Opdateret af"
+  },
+  "dialogs": {
+    "create": {
+      "title": "Opret ny bog"
+    },
+    "edit": {
+      "title": "Rediger bog"
+    },
+    "delete": {
+      "title": "Bekræft sletning",
+      "message": "Er du sikker på, at du vil slette \"{{ title }}\"?"
+    },
+    "details": {
+      "title": "Bogdetaljer"
+    }
+  },
+  "status": {
+    "yes": "Ja",
+    "no": "Nej"
+  },
+  "messages": {
+    "bookCreated": "Bogen \"{{title}}\" oprettet succesfuldt!",
+    "bookUpdated": "Bogen \"{{title}}\" opdateret succesfuldt!",
+    "bookDeleted": "Bogen \"{{title}}\" slettet succesfuldt!"
+  },
+  "errors": {
+    "createFailed": "Kunne ikke oprette bogen \"{{title}}\"!",
+    "updateFailed": "Kunne ikke opdatere bogen \"{{title}}\"!",
+    "deleteFailed": "Kunne ikke slette bogen \"{{title}}\"!",
+    "formValidation": "Udfyld venligst alle påkrævede felter korrekt",
+    "bookUpdateFailed": "Bogen kunne ikke redigeres.",
+    "bookDeleteFailed": "Bogen kunne ikke slettes."
+  },
+  "validation": {
+    "required": "Dette felt er påkrævet",
+    "minValue": "Prisen skal være mindst 0.01",
+    "minPages": "Skal have mindst 1 side"
+  },
+  "table": {
+    "title": "Titel",
+    "price": "Pris",
+    "saleStatus": "Tilbudsstatus",
+    "actions": "Handlinger"
+  },
+  "paginator": {
+    "itemsPerPage": "Elementer pr. side:",
+    "nextPage": "Næste side",
+    "previousPage": "Forrige side",
+    "firstPage": "Første side",
+    "lastPage": "Sidste side",
+    "rangeEmpty": "0 af {{total}}",
+    "range": "{{start}} - {{end}} af {{total}}"
+  }
+}

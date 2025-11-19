@@ -1,0 +1,89 @@
+/* --- Font --- */
+@import 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200';
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 200,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+/* --- Main --- */
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  padding: 20px;
+  margin: 0;
+}
+
+/* --- Dialog --- */
+.dialog {
+  width: 500px;
+
+  .dialog-header {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 20px;
+
+    h2 {
+      flex: auto;
+      font-size: 23px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    button {
+      flex: none;
+
+      .mat-mdc-button-persistent-ripple {
+        display: none !important;
+      }
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      font-size: 14px;
+      line-height: 2;
+
+      strong {
+        display: inline-block;
+        font-weight: 600;
+        color: #000;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+/* --- Paging --- */
+mat-paginator {
+  margin: 20px 0;
+}
+
+/* --- Snackbar success --- */
+.snackbar-success .mat-mdc-snackbar-surface {
+  background-color: #4caf50 !important;
+}
+
+/* --- Snackbar error --- */
+.snackbar-error .mat-mdc-snackbar-surface {
+  background-color: #f44336 !important;
+}

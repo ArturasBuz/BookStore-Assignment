@@ -1,0 +1,361 @@
+openapi: 3.0.2
+info:
+  title: BookStoreBff
+  version: 1.0.7
+  description: This .yaml file is for educational purposes only.
+servers:
+  - url: http://localhost:3001/book-store-bff
+    variables:
+      product:
+        default: BookStoreBff
+    description: mock server
+  - url: http://localhost:8080
+    description: local dev server
+paths:
+  /v1/books/{bookId}:
+    summary: Path used to manage a single book.
+    description: The REST endpoint/path used to get, update, and delete single instances of an `book`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.
+    get:
+      tags:
+        - BookstoreBff
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/book'
+          description: Successful response - returns a single `book`.
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/GET_book_forbidden'
+      operationId: getBook
+      summary: Get a book
+      description: Gets the details of a `book`.
+    put:
+      requestBody:
+        description: Updated `book` information.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bookUpdate'
+        required: true
+      tags:
+        - BookstoreBff
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/book'
+          description: The book is updated
+        '400':
+          $ref: '#/components/responses/inputError'
+        '404':
+          $ref: '#/components/responses/notFound'
+      operationId: updateBook
+      summary: Update a book
+      description: Updates an existing `book`.
+    delete:
+      tags:
+        - BookstoreBff
+      responses:
+        '204':
+          $ref: '#/components/responses/DELETE_success'
+        '403':
+          $ref: '#/components/responses/DELETE_forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+      operationId: deleteBook
+      summary: Delete a book
+      description: Deletes an existing `book`.
+    parameters:
+      - name: bookId
+        description: A unique identifier for a `book`.
+        schema:
+          type: string
+        in: path
+        required: true
+  /v1/books:
+    summary: Path used to manage the list of books.
+    description: The REST endpoint/path used to list and create zero or more `book` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.
+    get:
+      tags:
+        - BookstoreBff
+      parameters:
+        - examples:
+            onSale:
+              value: 'true'
+            all:
+              value: 'false'
+          name: onSale
+          description: only get books on sale
+          schema:
+            default: 'false'
+            type: boolean
+          in: query
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/book'
+          description: Successful response - returns an array of books
+        '403':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/notFound'
+      operationId: getBooks
+      summary: Get list of books
+      description: Gets a list of books based on true/false value of onSale.
+    post:
+      requestBody:
+        description: A new `book` to be created.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bookCreate'
+        required: true
+      tags:
+        - BookstoreBff
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/book'
+          description: Successful response.
+        '400':
+          $ref: '#/components/responses/inputError'
+      operationId: createBook
+      summary: Create a book
+      description: Creates a new instance of a `book`.
+components:
+  schemas:
+    errorMessage:
+      description: An error message
+      required:
+        - errors
+        - timestamp
+      type: object
+      properties:
+        message:
+          type: string
+          example: input validation failed
+        errors:
+          type: array
+          items:
+            required:
+              - reason
+              - description
+            type: object
+            properties:
+              reason:
+                type: string
+                example: Missing
+              description:
+                type: string
+                example: description is missing
+              identifier:
+                type: string
+                example: identifier
+        timestamp:
+          format: date-time
+          type: string
+          example: '2022-09-27T11:31:59.986Z'
+    book:
+      description: The default book object
+      required:
+        - id
+        - title
+      type: object
+      properties:
+        id:
+          description: Unique id
+          type: string
+        title:
+          description: Title
+          type: string
+        author:
+          description: Author of the book
+          type: string
+        price:
+          format: double
+          description: Price for this book
+          type: number
+        onSale:
+          description: Is book on sale
+          type: boolean
+        pageCount:
+          description: Number of pages
+          type: integer
+        lastUpdated:
+          format: int64
+          description: Last updated is used for concurrency check
+          type: string
+        lastUpdatedBy:
+          description: last updated by in db
+          type: string
+      example:
+        id: 14
+        title: Lord of the Flies
+        author: William Golding
+        price: 60.55
+        onSale: true
+        pageCount: 224
+        lastUpdated: 1601901810913
+        lastUpdatedBy: xxx-user
+    bookCreate:
+      description: Fields available for creating a book
+      required:
+        - title
+        - price
+        - pageCount
+      type: object
+      properties:
+        title:
+          description: Title of the book
+          type: string
+        author:
+          description: Author of the book
+          type: string
+        onSale:
+          description: Is this book on sale
+          type: boolean
+        pageCount:
+          description: Number of pages in this book
+          type: integer
+        price:
+          format: double
+          description: Price for this book
+          type: number
+      example:
+        title: Lord of the Flies
+        author: William Golding
+        onSale: true
+        pageCount: 224
+        price: 60.55
+    bookUpdate:
+      description: Fields needed for updating a book
+      required:
+        - lastUpdated
+        - onSale
+        - title
+        - pageCount
+        - price
+      type: object
+      properties:
+        title:
+          description: Title of the book
+          type: string
+        author:
+          description: Author of the book
+          type: string
+        lastUpdated:
+          format: int64
+          description: Last updated is used for concurrency check
+          type: integer
+        onSale:
+          description: Is this book on sale
+          type: boolean
+        pageCount:
+          description: number of pages in this book
+          type: integer
+        price:
+          format: double
+          description: Price for this book
+          type: number
+      example:
+        title: Lord of the Flies
+        author: William Golding
+        lastUpdated: 1601901810913
+        onSale: true
+        pageCount: 224
+        price: 60.55
+  responses:
+    badRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorMessage'
+      description: Bad input from user
+    notFound:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorMessage'
+      description: The resource was not found
+    conflict:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorMessage'
+      description: The resource was altered since last read
+    serverException:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorMessage'
+      description: Server error
+    unauthorized:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorMessage'
+      description: ''
+    inputError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorMessage'
+          examples:
+            Input validation error:
+              value:
+                message: Input validation error
+                errors:
+                  - reason: Missing
+                    description: description is missing
+                    identifier: identifier
+                  - reason: Book already exsist
+                    description: A book already exsist with these inputs
+                    identifier: identifier
+                timestamp: '2022-09-27T11:31:59.986Z'
+      description: ''
+    GET_book_forbidden:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorMessage'
+          examples:
+            Forbidden - Not allowed:
+              value:
+                message: Not authorized to rent this book
+                errors:
+                  - reason: You are not a subscriber
+                    description: Subscribe to the site
+                    identifier: free-user
+                timestamp: '2022-09-27T11:31:59.986Z'
+      description: This response is returned, when you are not permitted to get a book.
+    DELETE_success:
+      description: Successfully deletion of book
+    DELETE_forbidden:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorMessage'
+          examples:
+            Not allowed to delete book:
+              value:
+                message: Not allowed to delete this book
+                errors:
+                  - reason: You are not a subscriber
+                    description: Subscribe to the site
+                    identifier: free-user
+                timestamp: '2022-09-27T11:31:59.986Z'
+      description: Not allowed to delete book
+tags:
+  - name: BookstoreBff

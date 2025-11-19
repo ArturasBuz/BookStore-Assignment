@@ -1,0 +1,27 @@
+{
+  "$schema": "node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "7.8.0",
+    "generators": {
+      "book-store": {
+        "generatorName": "typescript-angular",
+        "output": "openapi/generated",
+        "inputSpec": "openapi/openapi.yaml",
+        "additionalProperties": {
+          "basePath": "environment.path",
+          "enumPropertyNaming": "UPPERCASE",
+          "fileNaming": "kebab-case",
+          "modelFileSuffix": ".dto",
+          "modelSuffix": "DTO",
+          "legacyDiscriminatorBehavior": false,
+          "useSingleRequestParameter": true,
+          "prefixParameterInterfaces": true,
+          "prependFormOrBodyParameters": true,
+          "sortParamsByRequiredFlag": true,
+          "ngVersion": "19.1.7"
+        }
+      }
+    }
+  }
+}

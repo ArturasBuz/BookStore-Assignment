@@ -1,0 +1,35 @@
+{
+  "request": {
+    "url": "v1/books\\?onSale=false",
+    "method": "GET"
+  },
+  "name": "Get list of all books",
+  "isArray": true,
+  "responses": {
+    "get-all-books": {
+      "default": true,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "file": "../../api-data/book/books_get_200_data.json"
+    },
+    "return-empty-list": {
+      "default": false,
+      "status": 200,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "file": "../../api-data/book/books_get_200_empty-list_data.json"
+    },
+    "Unauthorized": {
+      "status": 401
+    },
+    "notfound": {
+      "status": 404
+    },
+    "failed": {
+      "status": 500
+    }
+  }
+}

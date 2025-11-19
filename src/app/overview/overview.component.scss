@@ -1,0 +1,50 @@
+/* --- Header --- */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  & > h1 {
+    flex: auto;
+    background-image: url('./../../assets/book.svg');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 5px 0 5px 45px;
+    margin: 10px 0;
+    font-size: 25px;
+    font-weight: 800;
+  }
+
+  & > div {
+    flex: none;
+
+    button {
+      height: 56px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    mat-form-field {
+      margin: 0 30px;
+    }
+  }
+}
+
+/* --- Table --- */
+table {
+  tr {
+    &:hover {
+      td {
+        cursor: pointer;
+        background-color: #f3f3f3;
+        transition: all 0.1s ease-in-out;
+      }
+    }
+
+    td {
+      &:last-child {
+        text-align: right;
+      }
+    }
+  }
+}

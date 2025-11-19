@@ -1,0 +1,11 @@
+{
+  "message": "Not allowed to update this book",
+  "errors": [
+    {
+      "reason": "Another user is currently editing this book",
+      "description": "Try again later",
+      "identifier": "free-user"
+    }
+  ],
+  "timestamp": "2022-09-27T11:31:59.986Z"
+}
