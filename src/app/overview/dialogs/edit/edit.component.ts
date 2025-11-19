@@ -37,7 +37,6 @@ export class EditComponent {
     private fb: FormBuilder,
     private translate: TranslateService
   ) {
-    // Store original data for comparison
     this.originalData = {
       title: data.title,
       price: data.price,
@@ -52,13 +51,11 @@ export class EditComponent {
       onSale: [data.onSale || false],
     });
 
-    // Optional: Listen to form changes for debugging
     this.editForm.valueChanges.subscribe(() => {
       console.log('Form changed:', this.hasFormChanged());
     });
   }
 
-  // Check if form has changed from original values
   hasFormChanged(): boolean {
     const currentValues = this.editForm.value;
     return (
@@ -69,7 +66,6 @@ export class EditComponent {
     );
   }
 
-  // Check if form is valid AND changed
   isSaveDisabled(): boolean {
     return !this.editForm.valid || !this.hasFormChanged();
   }
@@ -80,26 +76,16 @@ export class EditComponent {
 
   onSave(): void {
     if (this.editForm.valid && this.hasFormChanged()) {
-      // Create the updated book object with all necessary fields
       const updatedBook: BookDTO = {
-        ...this.data, // Keep original data
+        ...this.data,
         title: this.editForm.value.title,
         price: Number(this.editForm.value.price),
         pageCount: Number(this.editForm.value.pageCount),
         onSale: this.editForm.value.onSale,
-        lastUpdated: new Date().toISOString(), // Update timestamp
+        lastUpdated: new Date().toISOString(),
       };
 
       this.dialogRef.close(updatedBook);
-    } else {
-      // Optional: Show validation error message
-      this.showValidationError();
     }
-  }
-
-  private showValidationError(): void {
-    const errorMessage = this.translate.instant('errors.formValidation');
-    // You could show this in a snackbar or dialog
-    console.warn(errorMessage);
   }
 }
